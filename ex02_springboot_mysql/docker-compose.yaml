@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  mysql8:
+    image: 'mysql:latest'
+    container_name: 'mysql8server'
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=Welcome#123'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+
+volumes:
+  mysql_data:
+    external: true  # need to create this volume manually 'docker volume create --name=mysql_data'
+      

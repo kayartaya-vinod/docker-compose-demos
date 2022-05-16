@@ -1,0 +1,28 @@
+docker run -d -p 3306:3306 --name mysql-server --restart=always -e MYSQL_ROOT_PASSWORD=Welcome#123 -v mysql_data:/var/lib/mysql mysql:latest
+
+docker-compose up -d
+docker-compose logs mysql8 # name of the service not the container
+docker logs mysql8server # name of the container not the service
+
+docker exec -it mysql8server mysql -uroot -pWelcome#123
+
+# Inside mysql cli:
+
+show databases;
+create database vindb;
+use vindb;
+create table persons(id int primary key auto_increment, name varchar(20));
+insert into persons values (null, 'Vinod'), (null, 'Shyam');
+select * from persons;
+
+# come out of mysql cli
+exit 
+
+docker-compose ps
+docker network ls
+
+# to stop/remove all services
+docker-compose down
+
+docker-compose ps
+docker network ls
